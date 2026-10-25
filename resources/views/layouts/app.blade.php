@@ -79,6 +79,19 @@
         }
         nav a:hover { color: #fff; background: var(--glass); }
         nav a.active { color: #0b1a14; background: var(--accent); font-weight: 600; }
+        nav form { display: flex; margin: 0; }
+        nav button {
+            color: var(--muted);
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 8px 18px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: .2s;
+        }
+        nav button:hover { color: #fff; background: var(--glass); }
 
         main { flex: 1; width: 100%; max-width: 1000px; margin: 0 auto; padding: 36px 20px; }
         footer { padding: 18px; text-align: center; font-size: 12px; color: var(--muted); }
@@ -238,20 +251,29 @@
 </head>
 <body>
 
-    <video class="bg-video" autoplay muted loop playsinline>
-        <source src="{{ asset('videos/bg.mp4') }}" type="video/mp4">
-    </video>
+<img class="bg-video" src="{{ asset('images/bg.jpg') }}" alt="">
     <div class="bg-overlay"></div>
     <div class="aura aura-1"></div>
     <div class="aura aura-2"></div>
 
     <header>
         <div class="brand">Hiker<span>Best</span></div>
-        <nav>
-            <a href="{{ route('gunung.index') }}" class="{{ request()->routeIs('gunung.*') ? 'active' : '' }}">Gunung</a>
-            <a href="{{ route('peralatan.index') }}" class="{{ request()->routeIs('peralatan.*') ? 'active' : '' }}">Peralatan</a>
-            <a href="{{ route('booking.index') }}" class="{{ request()->routeIs('booking.*') ? 'active' : '' }}">Booking</a>
-        </nav>
+<nav>
+    <a href="{{ route('gunung.index') }}" class="{{ request()->routeIs('gunung.*') ? 'active' : '' }}">Gunung</a>
+
+    @auth
+        <a href="{{ route('peralatan.index') }}" class="{{ request()->routeIs('peralatan.*') ? 'active' : '' }}">Peralatan</a>
+        <a href="{{ route('booking.index') }}" class="{{ request()->routeIs('booking.*') ? 'active' : '' }}">Booking</a>
+        <a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profil</a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
+    @else
+        <a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'active' : '' }}">Login</a>
+        <a href="{{ route('register') }}" class="{{ request()->routeIs('register') ? 'active' : '' }}">Register</a>
+    @endauth
+</nav>
     </header>
 
     <main>
