@@ -31,6 +31,7 @@
                 <td>Rp {{ number_format($item->harga_sewa, 0, ',', '.') }}</td>
                 <td>
                     <div class="aksi">
+                        <a href="{{ route('peralatan.show', $item) }}" class="btn btn-light">Detail</a>
                         <a href="{{ route('peralatan.edit', $item) }}" class="btn btn-warning">Ubah</a>
                         <form action="{{ route('peralatan.destroy', $item) }}" method="POST"
                               onsubmit="return confirm('Hapus peralatan ini?')">

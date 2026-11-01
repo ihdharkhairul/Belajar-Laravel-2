@@ -26,6 +26,11 @@ class PeralatanController extends Controller
             ->with('success', 'Peralatan berhasil ditambahkan.');
     }
 
+    public function show(Peralatan $peralatan)
+    {
+        return view('peralatan.show', ['peralatan' => $peralatan]);
+    }
+
     public function edit(Peralatan $peralatan)
     {
         return view('peralatan.edit', ['peralatan' => $peralatan]);

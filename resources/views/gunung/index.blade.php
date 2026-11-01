@@ -17,8 +17,12 @@
     <div class="grid">
         @forelse ($gunung as $item)
             <x-gunung-card :gunung="$item">
-                @auth
-                    <div class="aksi">
+                <div class="aksi">
+                    {{-- Detail bisa dilihat siapa saja --}}
+                    <a href="{{ route('gunung.show', $item) }}" class="btn btn-light">Detail</a>
+
+                    {{-- Ubah dan Hapus hanya untuk user yang sudah login --}}
+                    @auth
                         <a href="{{ route('gunung.edit', $item) }}" class="btn btn-warning">Ubah</a>
                         <form action="{{ route('gunung.destroy', $item) }}" method="POST"
                               onsubmit="return confirm('Hapus gunung ini? Booking untuk gunung ini ikut terhapus.')">
@@ -26,8 +30,8 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Hapus</button>
                         </form>
-                    </div>
-                @endauth
+                    @endauth
+                </div>
             </x-gunung-card>
         @empty
             <p class="empty">Belum ada data gunung.</p>

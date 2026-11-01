@@ -36,6 +36,7 @@
                 <td><x-status-badge :status="$item->status" /></td>
                 <td>
                     <div class="aksi">
+                        <a href="{{ route('booking.show', $item) }}" class="btn btn-light">Detail</a>
                         <a href="{{ route('booking.edit', $item) }}" class="btn btn-warning">Ubah</a>
                         <form action="{{ route('booking.destroy', $item) }}" method="POST"
                               onsubmit="return confirm('Hapus booking ini?')">

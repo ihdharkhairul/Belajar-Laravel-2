@@ -28,6 +28,12 @@ class BookingController extends Controller
             ->with('success', 'Booking berhasil ditambahkan.');
     }
 
+    public function show(Booking $booking)
+    {
+        $booking->load('gunung');
+        return view('booking.show', ['booking' => $booking]);
+    }
+
     public function edit(Booking $booking)
     {
         $gunung = Gunung::orderBy('nama_gunung')->get();
