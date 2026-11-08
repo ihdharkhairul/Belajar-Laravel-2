@@ -19,7 +19,6 @@ class GunungController extends Controller
         return view('gunung.show', ['gunung' => $gunung]);
     }
 
-    // CREATE: form tambah
     public function create()
     {
         return view('gunung.create');

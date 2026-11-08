@@ -1,0 +1,11 @@
+{
+    "name": "Peralatan",
+    "alias": "peralatan",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Peralatan\\Providers\\PeralatanServiceProvider"
+    ],
+    "files": []
+}

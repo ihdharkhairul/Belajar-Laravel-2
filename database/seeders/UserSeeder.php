@@ -13,7 +13,6 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        // 5 akun dummy (password: "password")
         for ($i = 0; $i < 5; $i++) {
             DB::table('users')->insert([
                 'name'       => $faker->name,
@@ -24,12 +23,23 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        // 1 akun admin tetap (aman dijalankan berulang)
         DB::table('users')->updateOrInsert(
             ['email' => 'admin@hikerbest.com'],
             [
                 'name'       => 'Admin HikerBest',
+                'role'       => 'admin',
                 'password'   => Hash::make('admin123'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
+
+        DB::table('users')->updateOrInsert(
+            ['email' => 'user@hikerbest.com'],
+            [
+                'name'       => 'User HikerBest',
+                'role'       => 'user',
+                'password'   => Hash::make('user123'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
